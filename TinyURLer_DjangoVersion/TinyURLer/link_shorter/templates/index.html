@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinyUrler</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jQuery.js' %}"></script>
+</head>
+
+<div class="icons">
+    <a href=""><img src="{% static 'profile.jpg' %}" alt="image profile"></a>
+    <div id="details">
+{#        <h2>{{ user.username }}</h2>#}
+{#        <h3>{{ profile.profile_user.password }}</h3>#}
+        <h2>Username</h2>
+        <h3>Number of links</h3>
+    </div>
+</div>
+<body>
+    <div class="container">
+    <div></div>
+    <h1 class="container_title">tinyUrler!</h1>
+    <div id="urlForm">
+        {% csrf_token %}
+        <label class="label" for="url">Enter the url to be shortened:</label>
+        <input type="url" id="url" name="url" required>
+        <button id="btn_submit">Accept</button>
+        <input type="text" id="short_url" readonly>
+    </div>
+    <h2 id="error_text"></h2>
+    <div></div>
+</div>
+
+
+<script>
+    function isValidUrl(string) {
+        if (!string.includes(".com") && !string.includes(".ir"))
+            return false;
+
+        try { new URL(string); return true; }
+        catch (_) { return false; } }
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    $(document).ready(function (){
+        document.getElementById("url").value = "https://";
+    })
+
+    document.getElementById('btn_submit').addEventListener('click', function() {
+        let url = document.getElementById("url").value;
+        if (!isValidUrl(url)) {
+            document.getElementById("error_text").innerText = "Please enter a valid URL.";
+            return;
+        }
+
+        document.getElementById("error_text").innerText = null;
+        document.getElementById("short_url").innerText = null;
+        $.ajax({
+            url: "http://localhost:8000/url_shorter/",
+            method: "POST",
+            data: { "url": url, },
+            headers: {
+                'X-CSRFToken': csrftoken,
+            },
+            success: function (data){
+                if (data["error"]){
+                    let error_code = data["error_code"];
+                    if (error_code === '1'){
+                        console.log("warning: error code 1")
+                        document.getElementById("error_text").innerText = data.error_text;
+                    } else if (error_code === '2') {
+                        console.log("warning: error code 2")
+                        document.getElementById("error_text").innerText = data.error_text;
+                    }
+                }
+            document.getElementById("short_url").value = data.short_url;
+        },
+    error: function () { alert("something is going wrong!") } }) });
+</script>

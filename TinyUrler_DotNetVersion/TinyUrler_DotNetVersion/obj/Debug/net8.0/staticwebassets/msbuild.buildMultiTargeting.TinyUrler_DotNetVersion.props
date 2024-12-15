@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TinyUrler_DotNetVersion.props" />
+</Project>

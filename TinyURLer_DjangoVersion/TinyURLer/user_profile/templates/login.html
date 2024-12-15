@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinyUrler</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jQuery.js' %}"></script>
+</head>
+<body>
+<div class="icons">
+    <img src="{% static 'profile.jpg' %}" alt="">
+    <div id="details">
+        <h2>name</h2>
+        <h3>number</h3>
+    </div>
+</div>
+<div class="container">
+    <div></div>
+    <h1 class="container_title">Login - tinyUrler!</h1>
+    <form id="urlForm">
+        <label class="label" for="url">Enter username and password:</label>
+        <input type="text" id="url" placeholder="username" required name="username" >
+        <input type="text" id="url" placeholder="password" required name="password" >
+        <button id="btn_submit">Accept</button>
+    </form>
+    <h2 id="error_text">there is an error</h2>
+    <div></div>
+</div>
+<script>
+</script>

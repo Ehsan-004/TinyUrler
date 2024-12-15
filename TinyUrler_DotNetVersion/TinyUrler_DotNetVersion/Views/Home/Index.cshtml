@@ -1,0 +1,78 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinyUrler</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <script src="~/js/jQuery.js"></script>
+</head>
+<body>
+<div class="icons">
+    @* <a href=""><img src="{% static 'profile.jpg' %}" alt="image profile"></a> *@
+    <div id="details">
+        <h2>Username</h2>
+        <h3>Number of links</h3>
+    </div>
+</div>
+
+<div class="container">
+    <div></div>
+    <h1 class="container_title">tinyUrler!</h1>
+    <div id="urlForm">
+        <label class="label" for="url">Enter the url to be shortened:</label>
+        <input type="url" id="url" name="url" required>
+        <button id="btn_submit">Accept</button>
+        <input type="text" id="ShortUrl" readonly>
+    </div>
+    <h2 id="errorText"></h2>
+    <div></div>
+</div>
+
+
+<script src="~/js/jQuery.js"></script>
+<script>
+        function isValidUrl(string) {
+            if (!string.includes(".com") && !string.includes(".ir"))
+                return false;
+
+            try { new URL(string); return true; }
+            catch (_) { return false; }
+        }
+
+        $(document).ready(function () {
+            document.getElementById("url").value = "https://";
+        })
+
+        document.getElementById('btn_submit').addEventListener('click', function () {
+            let new_url = document.getElementById("url").value;
+            //
+            if (!isValidUrl(new_url)) {
+                document.getElementById("errorText").innerText = null;
+                document.getElementById("ShortUrl").innerText = null;
+                document.getElementById("errorText").innerText = "Please enter a valid URL.";
+                return;
+            }
+
+            document.getElementById("errorText").innerText = null;
+            document.getElementById("ShortUrl").innerText = null;
+
+            $.ajax({
+                url: '@Url.Action("generate_short_url", "Home")',
+                method: "POST",
+                data: { "url": new_url, },
+                success: function (data) {  
+                    document.getElementById("errorText").innerText = data.errorText;
+                    document.getElementById("ShortUrl").value = String(data.shortUrl.toString());
+                },
+                error: function () { alert("something is going wrong!") }
+            })
+        });
+    </script>
+
+</body>
+</html>
