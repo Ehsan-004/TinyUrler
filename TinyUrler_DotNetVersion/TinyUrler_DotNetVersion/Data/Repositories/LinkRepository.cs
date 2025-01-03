@@ -35,6 +35,11 @@ namespace TinyUrler_DotNetVersion.Data
             return _context.Links.FirstOrDefaultAsync(l => l.Id == id);
         }
 
+        public Link GetById(int id)
+        {
+            return _context.Links.FirstOrDefault(l => l.Id == id);
+        }
+
         /// <summary> Receives a short url and retrurns the linked link </summary>
         /// <param name="short_url"> A string , short url </param> 
         /// <returns> A link if exists, otherwise null </returns>
@@ -60,12 +65,18 @@ namespace TinyUrler_DotNetVersion.Data
             return true ? res != null : false;
         }
 
-        public bool CreateLink(string url, string short_url)
+        public bool CreateLink(Link link)
         {
-            var link = new Link()
+            _context.Add(link);
+            return Save();
+        }
+
+        public bool CreateByData(string url, string short_url)
+        {
+            var link = new Link
             {
-                Url=url,
-                ShortUrl=short_url
+                ShortUrl = short_url,
+                Url = url
             };
             _context.Add(link);
             return Save();
@@ -73,7 +84,7 @@ namespace TinyUrler_DotNetVersion.Data
 
         public bool DeleteLink(int id)
         {
-            var link = GetLinkByIdAsync(id);
+            var link = GetById(id);
             _context.Remove(link);
             return Save();
         }
@@ -84,9 +95,10 @@ namespace TinyUrler_DotNetVersion.Data
             return true ? saved > 0 : false;
         }
 
-        public bool UpdateLink(string url, string short_url)
+        public bool UpdateLink(Link link)
         {
-            throw new NotImplementedException();
+            _context.Links.Update(link);
+            return Save();
         }
 
         

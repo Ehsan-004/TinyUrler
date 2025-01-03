@@ -21,8 +21,6 @@ namespace TinyUrler_DotNetVersion.Controllers
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
         };
 
-
-
         public static List<T> ShuffleList<T>(List<T> list)
         { 
             // AI generated code!
@@ -95,7 +93,7 @@ namespace TinyUrler_DotNetVersion.Controllers
                 short_url = Tools.GenerateShortId();
             }
 
-            if (_IlinkRepository.CreateLink(url, short_url))
+            if (_IlinkRepository.CreateByData(url, short_url))
                 return Json(new { 
                     //error = false,
                     success = true, 

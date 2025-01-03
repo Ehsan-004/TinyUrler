@@ -4739,11 +4739,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\c#\\ASP.NET CORE\\projects\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion.csproj",
+      "projectUniqueName": "E:\\Projects\\RealProjects\\Web\\TinyUrler\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion.csproj",
       "projectName": "TinyUrler_DotNetVersion",
-      "projectPath": "E:\\Projects\\c#\\ASP.NET CORE\\projects\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion.csproj",
+      "projectPath": "E:\\Projects\\RealProjects\\Web\\TinyUrler\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion.csproj",
       "packagesPath": "C:\\Users\\SADAF COMPUTER\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\c#\\ASP.NET CORE\\projects\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion\\obj\\",
+      "outputPath": "E:\\Projects\\RealProjects\\Web\\TinyUrler\\TinyUrler_DotNetVersion\\TinyUrler_DotNetVersion\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SADAF COMPUTER\\AppData\\Roaming\\NuGet\\NuGet.Config",

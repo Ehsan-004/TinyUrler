@@ -1,0 +1,44 @@
+﻿@model TinyUrler_DotNetVersion.Models.Link
+
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <!-- /# row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="basic-elements">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label>url</label>
+                                                <br>
+                                                <input asp-for="Url" class="form-control" placeholder="Name" value="@Model.Url" readonly>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label>short url</label>
+                                                <br>
+                                                <input asp-for="ShortUrl" class="form-control" placeholder="Name" value="@Model.ShortUrl" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                    
+                                <form method="post" asp-area="Admin" asp-controller="Urls" asp-action="Delete">
+                                    <input type="hidden" name="id" value="@Model.Id" id="id">
+                                    <button type="submit" class="btn btn-danger btn-default">Delete</button>
+                                </form>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
