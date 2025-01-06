@@ -1,32 +1,29 @@
-﻿@{
-    Layout = null;
-}
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.IdentityModel.Tokens
+@using TinyUrler_DotNetVersion.Data
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tinyUrler</title>
-    <link rel="stylesheet" href="~/css/style.css">
-    <script src="~/js/jQuery.js"></script>
-</head>
-<body>
-<div class="icons">
-    @* <a href=""><img src="{% static 'profile.jpg' %}" alt="image profile"></a> *@
-    <div id="details">
-        <h2>Username</h2>
-        <h3>Number of links</h3>
-    </div>
-</div>
+@{
+    var isAuthenticated = User.Identity != null && User.Identity.IsAuthenticated;
+    string userId = isAuthenticated ? User.FindFirstValue(ClaimTypes.NameIdentifier) : null;
+}
 
 <div class="container">
     <div></div>
     <h1 class="container_title">tinyUrler!</h1>
     <div id="urlForm">
-        <label class="label" for="url">Enter the url to be shortened:</label>
+        <label for="url">Enter the url to be shortened:</label>
         <input type="url" id="url" name="url" required>
-        <button id="btn_submit">Accept</button>
+
+        <input type="hidden" value="@userId" id="userId">
+        @if (isAuthenticated)
+        {
+            <button id="btn_submit">Accept</button>
+        }
+        else
+        {
+            <button id="btn_submit"><a asp-controller="Account" asp-action="Login">Accept</a></button>
+        }
         <input type="text" id="ShortUrl" readonly>
     </div>
     <h2 id="errorText"></h2>
@@ -60,12 +57,14 @@
 
             document.getElementById("errorText").innerText = null;
             document.getElementById("ShortUrl").innerText = null;
+            
+            var userId = document.getElementById("userId").value;
 
             $.ajax({
                 url: '@Url.Action("generate_short_url", "Home")',
                 method: "POST",
-                data: { "url": new_url, },
-                success: function (data) {  
+                data: { "url": new_url, "userId": userId},
+                success: function (data) {
                     document.getElementById("errorText").innerText = data.errorText;
                     document.getElementById("ShortUrl").value = String(data.shortUrl.toString());
                 },
@@ -73,6 +72,3 @@
             })
         });
     </script>
-
-</body>
-</html>

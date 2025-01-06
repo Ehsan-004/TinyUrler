@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TinyUrler_DotNetVersion.Data;
 using TinyUrler_DotNetVersion.Models;
 
 namespace TinyUrler_DotNetVersion.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize(policy:"RequireAdminRole")]
 public class UrlsController : Controller
 {
     private readonly IlinkRepository _context;

@@ -113,13 +113,15 @@
                     href="#"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Focus</span></a>
             </div>
             <ul>
-                <li class="active"><a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard </a></li>
+                <li class="active">
+                    <a asp-area="Admin" asp-controller="Home" class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard </a>
+                </li>
                 <li>
                     <a asp-area="Admin" asp-controller="Urls" asp-action="Index" class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Urls
                         <span class="ti-direction"></span></a>
                 </li>
+                <li><a asp-area="Admin" asp-controller="Users" asp-action="Index"><i class="ti-user"></i> Users </a></li>
                 <li><a href="#"><i class="ti-themify-favicon"></i> Comments </a></li>
-                <li><a href="#"><i class="ti-user"></i> Users </a></li>
                 <li><a><i class="ti-close"></i> Logout</a></li>
             </ul>
         </div>

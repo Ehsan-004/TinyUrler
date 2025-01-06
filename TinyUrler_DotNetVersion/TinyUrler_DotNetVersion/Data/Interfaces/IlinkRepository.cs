@@ -17,5 +17,6 @@ namespace TinyUrler_DotNetVersion.Data
         public  bool UpdateLink(Link link);
         public bool DeleteLink(int id);
         public bool Save();
+        public IEnumerable<Link> GetUserLinks(AppUser appUser);
     }
 }

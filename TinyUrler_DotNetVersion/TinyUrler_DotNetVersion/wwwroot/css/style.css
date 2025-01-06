@@ -56,12 +56,12 @@ img{
     gap: 30px
 }
 
-.label{
+label{
     text-align: left;
     font-size: 22px;
 }
 
-input, select, #btn_submit{
+#urlForm>input, select, #btn_submit{
     width: 70%;
     height: 40px;
     border-radius: 20px;
@@ -71,8 +71,33 @@ input, select, #btn_submit{
     direction: ltr;
 }
 
-#btn_submit{
-    box-shadow: 0 4px 8px rgb(0,0,0,08);
+#-submit{
+    background: transparent;
+    border: none;
+    color: inherit;
+    padding: 0;
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    display: inline;
+    cursor: pointer;
+}
+
+.links{
+    color: #FF8A65;
+    text-decoration: none;
+}
+
+.links:checked{
+    color: #FF8A65;
+    border: none;
+    text-decoration: none
+}
+
+a:checked{
+    color: #FF8A65;
+    border: none;
+    text-decoration: none
 }
 
 #btn_submit:hover{

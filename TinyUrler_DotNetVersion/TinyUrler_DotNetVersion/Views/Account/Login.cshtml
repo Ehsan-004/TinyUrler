@@ -1,0 +1,23 @@
+﻿@model TinyUrler_DotNetVersion.ViewModels.LoginViewModel
+
+<div class="container">
+    <div></div>
+    <h1 class="container_title">tinyUrler - Login</h1>
+    <form id="urlForm" method="post" asp-controller="Account" asp-action="Login">
+        <label asp-for="Username">Username:</label>
+        <input asp-for="Username" required>
+        
+        <label asp-for="Password">Password:</label>
+        <input asp-for="Password" required>
+        
+        <input id="btn_submit" type="submit" value="login">
+    </form>
+    
+    @if (TempData["Error"] != null)
+    {
+        <h2 id="errorText">
+            @TempData["Error"]   
+        </h2>
+    }
+    <div></div>
+</div>

@@ -61,11 +61,13 @@ namespace TinyUrler_DotNetVersion.Controllers
 
     public class HomeController : Controller
     {
-        private readonly IlinkRepository _IlinkRepository;
+        private readonly IlinkRepository _iLinkRepository;
+        private readonly IUserRepository _iUserRepository;
 
-        public HomeController(IlinkRepository ilinkRepository)
+        public HomeController(IlinkRepository iLinkRepository, IUserRepository iUserRepository)
         {
-            _IlinkRepository = ilinkRepository;
+            _iLinkRepository = iLinkRepository;
+            _iUserRepository = iUserRepository;
         }
 
         public IActionResult Index()
@@ -74,28 +76,53 @@ namespace TinyUrler_DotNetVersion.Controllers
         }
 
         [HttpPost]
-        public IActionResult generate_short_url(string url)
+        public IActionResult generate_short_url(string url, string? userId)
         {
-            if (_IlinkRepository.UrlExists(url))
+            Console.WriteLine("got the user id and url");
+            Console.WriteLine(url);
+            Console.WriteLine(userId);
+            
+            if (_iLinkRepository.UrlExists(url))
                 return Json(new { 
                     //error = true,
                     errorText = "This URL already exists!",
                     url = url,
-                    ShortUrl = _IlinkRepository.GetShortUrlByLink(url),
+                    ShortUrl = _iLinkRepository.GetShortUrlByLink(url),
                 });
 
             string short_url = Tools.GenerateShortId();
 
             while (true)
             {
-                if (!_IlinkRepository.ShortUrlExist(short_url))
+                if (!_iLinkRepository.ShortUrlExist(short_url))
                     break;
                 short_url = Tools.GenerateShortId();
             }
 
-            if (_IlinkRepository.CreateByData(url, short_url))
-                return Json(new { 
-                    //error = false,
+            var user = _iUserRepository.GetUserById(userId);
+
+            var link = new Link
+            {
+                ShortUrl = short_url,
+                Url = url,
+                AppUserId = userId,
+                AppUser = user,
+            };
+
+            Console.WriteLine("----------------");
+            Console.WriteLine(link.Url);
+            Console.WriteLine("----------------");
+            Console.WriteLine(link.AppUser.UserName);
+            Console.WriteLine("----------------");
+            Console.WriteLine(link.AppUser);
+            Console.WriteLine("----------------");
+            Console.WriteLine(_iUserRepository.GetUserById(userId));
+            Console.WriteLine("----------------");
+
+            var result = _iLinkRepository.CreateLink(link);
+            
+            if (result)
+                return Json(new {
                     success = true, 
                     url = url,
                     shortUrl = short_url ,
@@ -112,19 +139,13 @@ namespace TinyUrler_DotNetVersion.Controllers
         [Route("{shortUrl}")]
         public IActionResult LinkRedirect(string shortUrl)
         {
-            var url = _IlinkRepository.GetLinkByShortUrlAsync(shortUrl);
+            var url = _iLinkRepository.GetLinkByShortUrlAsync(shortUrl);
             if (url == null)
             {
                 return View("Index");
             }
 
             return Redirect(url.Url);
-        }
-        
-        [Route("home/all/")]
-        public IActionResult All()
-        {
-            return Json(new { links = _IlinkRepository.GetLinks() });
         }
 
         public IActionResult Privacy()

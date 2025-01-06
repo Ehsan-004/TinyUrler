@@ -497,3 +497,8 @@ E:\Projects\RealProjects\Web\TinyUrler\TinyUrler_DotNetVersion\TinyUrler_DotNetV
 E:\Projects\RealProjects\Web\TinyUrler\TinyUrler_DotNetVersion\TinyUrler_DotNetVersion\obj\Debug\net8.0\TinyUrler_DotNetVersion.pdb
 E:\Projects\RealProjects\Web\TinyUrler\TinyUrler_DotNetVersion\TinyUrler_DotNetVersion\obj\Debug\net8.0\TinyUrler_DotNetVersion.genruntimeconfig.cache
 E:\Projects\RealProjects\Web\TinyUrler\TinyUrler_DotNetVersion\TinyUrler_DotNetVersion\obj\Debug\net8.0\ref\TinyUrler_DotNetVersion.dll
+E:\Projects\RealProjects\Web\TinyUrler\TinyUrler_DotNetVersion\TinyUrler_DotNetVersion\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\Projects\RealProjects\Web\TinyUrler\TinyUrler_DotNetVersion\TinyUrler_DotNetVersion\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\Projects\RealProjects\Web\TinyUrler\TinyUrler_DotNetVersion\TinyUrler_DotNetVersion\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\Projects\RealProjects\Web\TinyUrler\TinyUrler_DotNetVersion\TinyUrler_DotNetVersion\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+E:\Projects\RealProjects\Web\TinyUrler\TinyUrler_DotNetVersion\TinyUrler_DotNetVersion\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll

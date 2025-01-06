@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TinyUrler_DotNetVersion")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+693459fdee887aab6a8b7cd76d3b65892d0123d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc37dc1d8a4680e938e6f93b4608389df7dff56b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TinyUrler_DotNetVersion")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TinyUrler_DotNetVersion")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

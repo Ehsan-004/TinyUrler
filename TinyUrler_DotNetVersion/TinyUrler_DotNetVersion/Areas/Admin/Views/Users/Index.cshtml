@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TinyUrler_DotNetVersion.Models.AppUser>
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="album py-5 bg-light">
+            <div class="container-fluid">
+                <!-- rows -->
+                <div class="table-wrapper">
+                    <table id="resizable-table" class="responsive-table resizable">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <th>User Links</th>
+                            <th><a class="btn btn-secondary" asp-area="Admin" asp-controller="Users" asp-action="Create">Create</a></th>
+                            @* <th><a href="Categories/Create/">Create</a></th> *@
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if (Model.Any() != null)
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.UserName</td>
+                                    <td>
+                                        <a asp-area="Admin"
+                                           asp-controller="Users"
+                                           asp-action="UserLinks"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-primary btn-edit">View Links</a>
+                                    </td>
+                                    <td>
+                                        @* <a class="btn btn-view">See</a> *@
+                                        <a asp-area="Admin"
+                                           asp-controller="Users"
+                                           asp-action="Edit"
+                                           class="btn btn-primary btn-edit"
+                                           asp-route-id="@item.Id">Edit</a>
+                                        
+                                        <a asp-area="Admin"
+                                           asp-controller="Users"
+                                           asp-action="Delete"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-danger btn-delete">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

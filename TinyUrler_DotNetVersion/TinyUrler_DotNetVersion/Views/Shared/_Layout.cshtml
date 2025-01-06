@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinyUrler</title>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+
+<div class="icons">
+    @* <a href=""><img src="{% static 'profile.jpg' %}" alt="image profile"></a> *@
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <div id="details">
+            <h2>@User.Identity.Name</h2>
+            <form asp-controller="Account" asp-action="Logout">
+                <input type="submit" value="Logout" id="-submit">
+            </form>
+            <h3>Number of links</h3>
+        </div>
+    }
+    else
+    {
+        <div id="details">
+            <a class="links" asp-controller="Account" asp-action="Login"><h2>Login</h2></a>
+            <a class="links" asp-controller="Account" asp-action="Register"><h2>Register</h2></a>
+        </div>
+    }
+
+
+</div>
+
+@RenderBody()
+
+</body>
+</html>

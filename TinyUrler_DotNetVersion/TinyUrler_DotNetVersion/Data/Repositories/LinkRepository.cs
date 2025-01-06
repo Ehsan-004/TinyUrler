@@ -9,10 +9,12 @@ namespace TinyUrler_DotNetVersion.Data
     public class LinkRepository : IlinkRepository
     {
         private readonly TContext _context;
+        private readonly IUserRepository _userRepository;
 
-        public LinkRepository(TContext context)
+        public LinkRepository(TContext context, IUserRepository userRepository)
         {
             _context = context;
+            _userRepository = userRepository;
         }
 
         /// <summary> Used to get all links </summary>
@@ -93,6 +95,11 @@ namespace TinyUrler_DotNetVersion.Data
         {
             var saved = _context.SaveChanges();
             return true ? saved > 0 : false;
+        }
+
+        public IEnumerable<Link> GetUserLinks(AppUser appUser)
+        {
+            return _context.Links.Where(l => l.AppUserId == appUser.Id);
         }
 
         public bool UpdateLink(Link link)
