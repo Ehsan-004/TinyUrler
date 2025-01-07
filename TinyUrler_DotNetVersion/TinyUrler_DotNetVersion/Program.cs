@@ -48,7 +48,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//
+// Unpin This part to craete an admin account.
 // using (var scope = app.Services.CreateScope())
 // {
 //     var services = scope.ServiceProvider; 
